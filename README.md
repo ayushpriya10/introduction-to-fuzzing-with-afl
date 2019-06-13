@@ -1,5 +1,9 @@
 # An introduction to fuzzing with American Fuzzy Lop
 
+Here's the [presentation](https://docs.google.com/presentation/d/1pAuq16LorXcDpxPHfEj-f_mAyTCCzTKTBtQHKLaq060/edit?usp=sharing)
+
+The prerequisite for the session would be to complete the steps from below till `"Installing QEMU mode"`.
+
 * Installing compilers:
 
 ```bash

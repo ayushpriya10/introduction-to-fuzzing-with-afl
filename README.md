@@ -182,6 +182,12 @@ screen -dmS fuzzer4 /bin/bash -c "afl-fuzz -i input-files -o alf_out -S fuzzer4 
 screen -rd fuzzer1
 ```
 
+* Check status of fuzzers:
+
+```bash
+afl-whatsup afl_out
+```
+
 * Examining crash with `GDB`:
 
 ```bash
@@ -196,4 +202,22 @@ gdb ../../../fuzzgoat
     --- snipped ---
 
 (gdb) exploitable
+```
+
+* Minimising the number of test cases:
+
+```bash
+afl-cmin -i afl_in -o afl_out -- ./fuzzgoat @@
+```
+
+* Minimising individual test cases:
+
+```bash
+afl-tmin -i afl_in -o afl_out -- ./fuzzgoat @@
+```
+
+* Fuzzing binaries without source with QEMU mode:
+
+```bash
+afl-fuzz -Q -i afl_in -o alf_out -- <Binary> <options> -a @@
 ```

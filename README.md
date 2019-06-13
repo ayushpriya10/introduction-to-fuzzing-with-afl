@@ -98,7 +98,7 @@ CC=afl-clang-fast ./configure
 make
 ```
 
-If a program sends errors to an external entity, AFL might end up treating a crash as a hang. Though many applications would work just fine without it but to not take any chances, we'll make the following configuration change to the system:
+* System configuration change to avoid false-negatives:
 
 ```bash
 sudo bash -c "echo core > /proc/sys/kernel/core_pattern"

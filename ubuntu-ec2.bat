@@ -1,1 +1,0 @@
-ssh -i "C:\Users\Ayush\Downloads\meta3.pem" ubuntu@ec2-52-12-169-57.us-west-2.compute.amazonaws.com

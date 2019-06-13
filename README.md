@@ -112,7 +112,7 @@ mkdir afl_in afl_out
 cp /bin/ps afl_in/
 ```
 
-Fuzzing:
+* Fuzzing:
 
 ```bash
 cd ~/binutils-2.25

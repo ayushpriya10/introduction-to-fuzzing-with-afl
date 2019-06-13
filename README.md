@@ -191,7 +191,7 @@ gdb ../../../fuzzgoat
 * Checking for exploitable bug:
 
 ```bash
-(gdb) source ../../../../../exploitable/exploitable/exploitable.py                                                                                          (gdb)
+(gdb) source ../../../../../exploitable/exploitable/exploitable.py
 
     --- snipped ---
 

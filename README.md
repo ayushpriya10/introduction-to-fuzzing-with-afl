@@ -4,7 +4,17 @@ Here's the [presentation](https://docs.google.com/presentation/d/1pAuq16LorXcDpx
 
 The prerequisite for the session would be to complete the steps from below till `"Installing QEMU mode"`.
 
-## Installing Prerequisites
+## **Overview**
+
+1. [Installing Prerequisites](#Installing-Prerequisites)
+2. [Installing AFL](#-Installing-AFL)
+3. [Working with AFL](#Working-with-AFL)
+4. [Miscellaneous](#Miscellaneous)
+5. [Hands-on](#Hands-on)
+6. [Optimising the fuzzing process](#Optimising-the-fuzzing-process)
+7. [Fuzzing binaries without source](#Fuzzing-binaries-without-source)
+
+## **Installing Prerequisites**
 
 * Install required compilers with the following commands:
 
@@ -43,7 +53,7 @@ sudo apt install libglib2.0-dev
 sudo apt install qemu
 ```
 
-## Installing AFL
+## **Installing AFL**
 
 1. Install `AFL` with these commands:
 
@@ -75,7 +85,7 @@ cd ..
 sudo make install
 ```
 
-## Working with AFL 
+## **Working with AFL**
 
 1. Compile the application with the following commands:
 
@@ -129,7 +139,7 @@ cd ~/binutils-2.25
 afl-fuzz -i afl_in -o afl_out -- ./binutils/readelf -a @@
 ```
 
-## Miscellaneous
+## **Miscellaneous**
 
 * To check available cores use the following command:
 
@@ -159,7 +169,7 @@ Ctrl + a
 d
 ```
 
-## Hands-on
+## **Hands-on**
 
 1. Clone `fuzzgoat` with the following command:
 
@@ -218,7 +228,7 @@ gdb ../../../fuzzgoat
 (gdb) exploitable
 ```
 
-## Optimising the fuzzing process
+## **Optimising the fuzzing process**
 
 * To minimise the number of test cases, use the following command:
 
@@ -232,7 +242,7 @@ afl-cmin -i afl_in -o afl_out -- ./fuzzgoat @@
 afl-tmin -i afl_in -o afl_out -- ./fuzzgoat @@
 ```
 
-## Fuzzing binaries without source
+## **Fuzzing binaries without source**
 
 * To fuzz binaries without source with QEMU mode, use the following command:
 

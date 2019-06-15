@@ -1,23 +1,25 @@
 # An introduction to fuzzing with American Fuzzy Lop
 
-Here's the [presentation](https://docs.google.com/presentation/d/1pAuq16LorXcDpxPHfEj-f_mAyTCCzTKTBtQHKLaq060/edit?usp=sharing)
+Here's the [presentation](https://docs.google.com/presentation/d/1pAuq16LorXcDpxPHfEj-f_mAyTCCzTKTBtQHKLaq060/edit?usp=sharing).
 
 The prerequisite for the session would be to complete the steps from below till `"Installing QEMU mode"`.
 
-* Installing compilers:
+## Installing Prerequisites
+
+* Install required compilers with the following commands:
 
 ```bash
 sudo apt install gcc
 sudo apt install clang
 ```
 
-* Installing `GDB`:
+* Install `GDB` with the following command:
 
 ```bash
 sudo apt install gdb
 ```
 
-* Installing `exploitable`:
+* Install `exploitable` with the following commands:
 
 ```bash
 git clone https://github.com/jfoote/exploitable.git
@@ -25,13 +27,13 @@ cd exploitable/
 python setup.py install
 ```
 
-* Installing `screen`:
+* Install `screen` with the following command:
 
 ```bash
 sudo apt install screen
 ```
 
-* To run `QEMU` mode, we'd need to install a bunch of dependencies:
+* To run `QEMU` mode, we'd need to install a bunch of dependencies. Install the dependencies by running the following commands:
 
 ```bash
 sudo apt install libtool-bin
@@ -41,7 +43,9 @@ sudo apt install libglib2.0-dev
 sudo apt install qemu
 ```
 
-* Installing `AFL`:
+## Installing AFL
+
+1. Install `AFL` with these commands:
 
 ```bash
 wget http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz
@@ -51,7 +55,7 @@ make
 sudo make install
 ```
 
-* Installing llvm compiler:
+2. Install llvm compiler with these commands:
 
 ```bash
 cd afl-2.51b/llvm_mode/
@@ -62,7 +66,7 @@ make
 sudo make install
 ```
 
-* Installing QEMU mode:
+3. Install QEMU mode with the following commands:
 
 ```bash
 cd afl-2.52b/qemu_mode
@@ -71,7 +75,9 @@ cd ..
 sudo make install
 ```
 
-* Compiling the application:
+## Working with AFL 
+
+1. Compile the application with the following commands:
 
 ```bash
 export CC=afl-clang-fast
@@ -81,19 +87,19 @@ export AFL_INST_RATIO=100
 make
 ```
 
-* Building `test corpus`:
+2. Build `test corpus` witht the following command:
 
 ```bash
 cp /bin/ps afl_in/
 ```
 
-* Downloading `binutils`:
+3. Download `binutils` (or any binary):
 
 ```bash
 wget http://ftp.gnu.org/gnu/binutils/binutils-2.25.tar.gz
 ```
 
-* Building binary for `binutils`:
+4. Build binary for `binutils`:
 
 ```bash
 tar -xvzf binutils-2.25.tar.gz
@@ -102,13 +108,13 @@ CC=afl-clang-fast ./configure
 make
 ```
 
-* System configuration change to avoid false-negatives:
+5. System configuration change to avoid false-negatives:
 
 ```bash
 sudo bash -c "echo core > /proc/sys/kernel/core_pattern"
 ```
 
-* Building required directories for AFL:
+6. Build required directories for AFL with the following commands:
 
 ```bash
 cd ~/binutils-2.25
@@ -116,20 +122,22 @@ mkdir afl_in afl_out
 cp /bin/ps afl_in/
 ```
 
-* Fuzzing:
+7. Start fuzzing with the following command:
 
 ```bash
 cd ~/binutils-2.25
 afl-fuzz -i afl_in -o afl_out -- ./binutils/readelf -a @@
 ```
 
-* Check available cores:
+## Miscellaneous
+
+* To check available cores use the following command:
 
 ```bash
 afl-gotcpu
 ```
 
-* Running parallel fuzzers on `binutils` with `screen`:
+* To run parallel fuzzers on `binutils` with `screen`, use the following commands:
 
 ```bash
 screen -dmS fuzzer1 /bin/bash -c "afl-fuzz -i afl_in -o alf_out -M fuzzer1 -- ./binutils/readelf -a @@"
@@ -138,26 +146,28 @@ screen -dmS fuzzer3 /bin/bash -c "afl-fuzz -i afl_in -o alf_out -S fuzzer3 -- ./
 screen -dmS fuzzer4 /bin/bash -c "afl-fuzz -i afl_in -o alf_out -S fuzzer4 -- ./binutils/readelf -a @@"
 ```
 
-* To read from the specified fuzzer:
+* To read from the specified fuzzer, use the following command:
 
 ```bash
 screen -rd <session name>
 ```
 
-* To detach from a `screen` session and return back to the terminal:
+* To detach from a `screen` session and return back to the terminal, use the following key combination:
 
 ```keyboard
 Ctrl + a
 d
 ```
 
-* Clone `fuzzgoat`:
+## Hands-on
+
+1. Clone `fuzzgoat` with the following command:
 
 ```bash
 git clone https://github.com/fuzzstati0n/fuzzgoat
 ```
 
-* Compiling `fuzzgoat`:
+2. Compile `fuzzgoat` with the following command:
 
 ```bash
 cd fuzzgoat
@@ -165,13 +175,13 @@ CC=afl-clang-fast
 make
 ```
 
-* Making required directories for `fuzzgoat` (it already has a `input-files` directory):
+3. To make required directories for `fuzzgoat` (it already has a `input-files` directory), use the following command:
 
 ```bash
 mkdir afl_out
 ```
 
-* Starting the fuzzers in parallel with `screen`:
+4. To starting the fuzzers in parallel with `screen`, use the following commands:
 
 ```bash
 screen -dmS fuzzer1 /bin/bash -c "afl-fuzz -i input-files -o alf_out -M fuzzer1 -- ./fuzzgoat @@"
@@ -180,25 +190,25 @@ screen -dmS fuzzer3 /bin/bash -c "afl-fuzz -i input-files -o alf_out -S fuzzer3 
 screen -dmS fuzzer4 /bin/bash -c "afl-fuzz -i input-files -o alf_out -S fuzzer4 -- ./fuzzgoat @@"
 ```
 
-* Reading  AFL output:
+5. To reading  AFL output, use the following command:
 
 ```bash
 screen -rd fuzzer1
 ```
 
-* Check status of fuzzers:
+6. To check status of fuzzers, use the following command:
 
 ```bash
 afl-whatsup afl_out
 ```
 
-* Examining crash with `GDB`:
+7. To examine crash with `GDB`, use the following command:
 
 ```bash
 gdb ../../../fuzzgoat
 ```
 
-* Checking for exploitable bug:
+8. To check for exploitable bug, use the following command:
 
 ```bash
 (gdb) source ../../../../../exploitable/exploitable/exploitable.py
@@ -208,19 +218,23 @@ gdb ../../../fuzzgoat
 (gdb) exploitable
 ```
 
-* Minimising the number of test cases:
+## Optimising the fuzzing process
+
+* To minimise the number of test cases, use the following command:
 
 ```bash
 afl-cmin -i afl_in -o afl_out -- ./fuzzgoat @@
 ```
 
-* Minimising individual test cases:
+* To minimise the individual test cases, use the following command:
 
 ```bash
 afl-tmin -i afl_in -o afl_out -- ./fuzzgoat @@
 ```
 
-* Fuzzing binaries without source with QEMU mode:
+## Fuzzing binaries without source
+
+* To fuzz binaries without source with QEMU mode, use the following command:
 
 ```bash
 afl-fuzz -Q -i afl_in -o alf_out -- <Binary> <options> -a @@

@@ -221,7 +221,7 @@ gdb ../../../fuzzgoat
 8. To check for exploitable bug, use the following command:
 
 ```bash
-(gdb) source ../../../../../exploitable/exploitable/exploitable.py
+(gdb) source ../../../../exploitable/exploitable/exploitable.py
 
     --- snipped ---
 

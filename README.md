@@ -4,6 +4,8 @@ Here's the [presentation](https://docs.google.com/presentation/d/1pAuq16LorXcDpx
 
 The prerequisite for the session would be to complete the steps from below till `"Installing QEMU mode"`.
 
+> **Note:** The setup requires Ubuntu 17.04 or lower
+
 ## **Overview**
 
 1. [Installing Prerequisites](#Installing-Prerequisites)

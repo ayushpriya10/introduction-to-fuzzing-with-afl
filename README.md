@@ -249,5 +249,5 @@ afl-tmin -i afl_in -o afl_out -- ./fuzzgoat @@
 * To fuzz binaries without source with QEMU mode, use the following command:
 
 ```bash
-afl-fuzz -Q -i afl_in -o alf_out -- <Binary> <options> -a @@
+afl-fuzz -Q -i afl_in -o alf_out -- <Binary> <options> @@
 ```
